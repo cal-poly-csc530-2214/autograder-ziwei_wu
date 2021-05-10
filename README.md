@@ -10,33 +10,33 @@ For my 4 hours I did the following:
 The reason it becomes unsolvable is because of the below snippet.
 
 ----------------
-Array computeDeriv(Array poly){//example where we don't know what is wrong
-    Array deriv = new Array(sz = 0, A = {});
-    int zero = 0;
-    if(boolOrFalse(poly.sz == 1)){
-        **return modRetVal0(deriv);**
-    }
-    int start_index = intOrPlusOne(0);
-    int arrSize = poly.sz - start_index;
-    int[arrSize] tempArr;
-    for(int e = start_index; e < poly.sz; ++e){
-        if(boolOrFalse(poly.A[e] ==0)){
-            zero = zero + 1;
-        }
-        else{
-            tempArr[e-start_index] = poly.A[e] * e;
-        }
-    }
-    Array possibleArray = new Array(sz = arrSize, A = tempArr);
-    **return modRetVal0(possibleArray);**
-}
-
-Array modRetVal0(Array a){
-    if(??){
-        return a;
-    }
-    return new Array(sz = 1, A = {0});
-}
+Array computeDeriv(Array poly){//example where we don't know what is wrong  
+    Array deriv = new Array(sz = 0, A = {});  
+    int zero = 0;  
+    if(boolOrFalse(poly.sz == 1)){  
+        **return modRetVal0(deriv);**  
+    }  
+    int start_index = intOrPlusOne(0);  
+    int arrSize = poly.sz - start_index;  
+    int[arrSize] tempArr;  
+    for(int e = start_index; e < poly.sz; ++e){  
+        if(boolOrFalse(poly.A[e] ==0)){  
+            zero = zero + 1;  
+        }  
+        else{  
+            tempArr[e-start_index] = poly.A[e] * e;  
+        }  
+    }  
+    Array possibleArray = new Array(sz = arrSize, A = tempArr);  
+    **return modRetVal0(possibleArray);**  
+}  
+  
+Array modRetVal0(Array a){  
+    if(??){  
+        return a;  
+    }  
+    return new Array(sz = 1, A = {0});  
+}  
 
 ---------------------------------------
 As seen above, there are two places that use **modRetVal(Array);**
