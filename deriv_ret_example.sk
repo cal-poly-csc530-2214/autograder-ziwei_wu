@@ -1,0 +1,48 @@
+//Starting example where only the return statement for when the input array is sized 1 is wrong
+
+struct Array{ //Because SKETCH does not have dynamically sized arrays
+    int sz;
+    int[sz] A;
+}
+
+//This is the original program, used for comparisons to make sure it is correct
+Array computeDeric_list_int(Array poly_list_int){
+    if(poly_list_int.sz == 1){
+        return new Array(sz = 1, A = {0});
+    }
+    int N = poly_list_int.sz-1;
+    int[N] result; //just drop the first element immediately
+    for(int i = 1; i < poly_list_int.sz; ++i){
+        result[i-1] = i * poly_list_int.A[i];
+    }
+    return new Array(sz = N, A = result);
+}
+
+Array computeDeriv(Array poly){//example where the one return statement may be wrong
+    Array deriv = new Array(sz = 0, A = {});
+    if(poly.sz == 1){
+        //this is the wrong portion
+        return modRetVal0(deriv);
+    }
+    int N = poly.sz-1;
+    int[N] result; //just drop the first element immediately
+    for(int i = 1; i < poly.sz; ++i){
+        result[i-1] = i * poly.A[i];
+    }
+    return new Array(sz = N, A = result);
+}
+
+Array modRetVal0(Array a){
+    if(??){
+        return a;
+    }
+    return new Array(sz = 1, A = {0});
+}
+
+harness void main(){
+    Array arTest = new Array(sz = 1, A = {4});
+
+    Array original_result = computeDeric_list_int(arTest);
+    Array student_result = computeDeriv(arTest);
+    assert original_result.sz == student_result.sz && original_result.A[0] == student_result.A[0];
+}
