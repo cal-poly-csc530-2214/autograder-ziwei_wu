@@ -44,9 +44,11 @@ As seen above, there are two places that use **modRetVal(...);** in **computeDer
 If the input (poly) contains [1,2,3,4,5], the ?? in modRetVal has to equal 1 (true). If the input contains [4] and the return statement is incorrect (which, in this case, is), the ?? in modRetVal has to be 0 (false). Since it cannot be both 0 and 1 at the same time, it becomes unsolvable when trying to use both as inputs.  
 I tried to stick as close to the code in the paper as possible and assumed that similar modifications to the program use the same function call for solving. But now that I think about it, that wouldn't make sense as some bools or ints would need to be different. Oh well.
 
+I thought it was an interesting thing to note, so I kept it. **figure_4_fixed.sk** and the relevant C++ files fixes this issue.
+
 
 Other notes:
-- For **deriv_ret_example.sk** and **figure_4.sk**:
+- For **deriv_ret_example.sk**, **figure_4.sk**, and **figure_4_fixed.sk**:
   - computeDeric_list_int(...) is the correct program used for assertions
   - computeDeriv(...) is a student program/ program with things incorrect
   - The functions that have if(??){return a} in them represent the bracketed lists in MPY, where the input(a) is the default choice.
