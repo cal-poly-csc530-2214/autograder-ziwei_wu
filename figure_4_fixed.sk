@@ -1,0 +1,87 @@
+//This tries to solve for the student input from Figure 4 of the paper
+
+struct Array{ //Because SKETCH does not have dynamically sized arrays
+    int sz;
+    int[sz] A;
+}
+
+//This is the original program, used for comparisons to make sure it is correct
+Array computeDeric_list_int(Array poly_list_int){
+    if(poly_list_int.sz == 1){
+        return new Array(sz = 1, A = {0});
+    }
+    int N = poly_list_int.sz-1;
+    int[N] result; //just drop the first element immediately
+    for(int i = 1; i < poly_list_int.sz; ++i){
+        result[i-1] = i * poly_list_int.A[i];
+    }
+    return new Array(sz = N, A = result);
+}
+
+Array computeDeriv(Array poly){//example where we don't know what is wrong
+    Array deriv = new Array(sz = 0, A = {});
+    int zero = 0;
+    if(boolOrFalse0(poly.sz == 1)){
+        return modRetVal0(deriv);
+    }
+    int start_index = intOrPlusOne(0);
+    int arrSize = poly.sz - start_index;
+    int[arrSize] tempArr;
+    for(int e = start_index; e < poly.sz; ++e){
+        if(boolOrFalse1(poly.A[e] ==0)){
+            zero = zero + 1;
+        }
+        else{
+            tempArr[e-start_index] = poly.A[e] * e;
+        }
+    }
+    return modRetVal1(new Array(sz = arrSize, A = tempArr));
+}
+
+int intOrPlusOne(int a){
+    if(??){
+        return a;
+    }
+    return a + 1;
+}
+
+bit boolOrFalse0(bit a){
+    if(??){
+        return a;
+    }
+    return 0;
+}
+
+bit boolOrFalse1(bit a){
+    if(??){
+        return a;
+    }
+    return 0;
+}
+
+Array modRetVal0(Array a){
+    if(??){
+        return a;
+    }
+    return new Array(sz = 1, A = {0});
+}
+
+Array modRetVal1(Array a){
+    if(??){
+        return a;
+    }
+    return new Array(sz = 1, A = {0});
+}
+
+harness void main(){
+    Array arTest = new Array(sz = 1, A = {4});
+    Array original_result = computeDeric_list_int(arTest);
+    Array student_result = computeDeriv(arTest);
+    assert original_result.sz == student_result.sz && original_result.A[0] == student_result.A[0];
+
+    Array arTest1 = new Array(sz = 5, A = {1,2,3,4,5});
+    Array original_result1 = computeDeric_list_int(arTest1);
+    Array student_result1 = computeDeriv(arTest1);
+    assert original_result1.sz == student_result1.sz;
+    assert original_result1.A == student_result1.A;
+}
