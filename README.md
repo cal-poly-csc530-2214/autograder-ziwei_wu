@@ -4,8 +4,8 @@ For my 4 hours I did the following:
 - Read the paper and to understand the idea and how the authors implemented it in Sketch.
 - Downloaded the Sketch source, built it, and tested it to see how it works.
 - test.sk and add_to_equal_14.sk contains some code I tested with. **add_to_equal_14.cpp** and **add_to_equal_14.h** is the output of the Sketch program with the flag **--fe-output-code**. The synthesized program is outputted as C++ code.
-- "deriv_ret_example.sk" and its .cpp and .h tries to solve for a single thing: what to return if the input polynomial array has the length of 1?
-- figure_4.sk and its C++ files solve for the MPY program in figure 4. Currently, it only tests for the input Array [1,2,3,4,5]. The reason is because it is tested alongside with something like [4] as well, it becomes unsolvable. 
+- **deriv_ret_example.sk** and its .cpp and .h files solves a single thing: what to return if the input polynomial array has the length of 1? The other parts of the program is correct.
+- **figure_4.sk** and its C++ files solve for the MPY program in figure 4. Currently, it only tests for the input Array [1,2,3,4,5]. The reason is because it is tested alongside with something like [4] as well, it becomes unsolvable. 
 - Note: Array is a custom struct that contains: an integer representing the array length (named sz) and an integer array of length sz.
 
 The reason it becomes unsolvable is because of the below snippet.
@@ -40,5 +40,12 @@ Array modRetVal0(Array a){
 }  
 ```
 
-As seen above, there are two places that use **modRetVal(Array);** in **computeDeriv(Array)**.
+As seen above, there are two places that use **modRetVal(Array);** in **computeDeriv(...)**.
 If the input (poly) contains [1,2,3,4,5], the ?? in modRetVal has to equal 1 (true). If the input contains [4] and the return statement is incorrect (which, in this case, is), the ?? in modRetVal has to be 0 (false). Since it cannot be both 0 and 1 at the same time, it becomes unsolvable when trying to use both as inputs.
+
+
+Other notes:
+- For **deriv_ret_example.sk** and **figure_4.sk**:
+  - computeDeric_list_int(...) is the correct program used for assertions
+  - computeDeriv(...) is a student program/ program with things incorrect
+  - The functions that have if(??){return a} in them represent the bracketed lists in MPY, where the input(a) is the default choice.
