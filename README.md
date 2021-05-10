@@ -5,8 +5,8 @@ For my 4 hours I did the following:
 - Downloaded the Sketch source, built it, and tested it to see how it works.
 - test.sk and add_to_equal_14.sk contains some code I tested with. **add_to_equal_14.cpp** and **add_to_equal_14.h** is the output of the Sketch program with the flag **--fe-output-code**. The synthesized program is outputted as C++ code.
 - **deriv_ret_example.sk** and its .cpp and .h files solves a single thing: what to return if the input polynomial array has the length of 1? The other parts of the program is correct.
-- **figure_4.sk** and its C++ files solve for the MPY program in figure 4. Currently, it only tests for the input Array [1,2,3,4,5]. The reason is because it is tested alongside with something like [4] as well, it becomes unsolvable. 
-- Note: Array is a custom struct that contains: an integer representing the array length (named sz) and an integer array of length sz.
+- **figure_4.sk** and its C++ files solve for the MPY program in figure 4 (translated into Sketch). Currently, it only generates a program for the given input Array that contains [1,2,3,4,5]. The reason is because if something like [4] is an input as well, it becomes unsolvable. 
+- Note: Array is a struct that contains: an integer representing the array length (named sz) and an integer array of length sz (named A).
 
 The reason it becomes unsolvable is because of the below snippet.
 
@@ -40,8 +40,9 @@ Array modRetVal0(Array a){
 }  
 ```
 
-As seen above, there are two places that use **modRetVal(Array);** in **computeDeriv(...)**.
-If the input (poly) contains [1,2,3,4,5], the ?? in modRetVal has to equal 1 (true). If the input contains [4] and the return statement is incorrect (which, in this case, is), the ?? in modRetVal has to be 0 (false). Since it cannot be both 0 and 1 at the same time, it becomes unsolvable when trying to use both as inputs.
+As seen above, there are two places that use **modRetVal(...);** in **computeDeriv(...)** : below the first if-statement and at the end.
+If the input (poly) contains [1,2,3,4,5], the ?? in modRetVal has to equal 1 (true). If the input contains [4] and the return statement is incorrect (which, in this case, is), the ?? in modRetVal has to be 0 (false). Since it cannot be both 0 and 1 at the same time, it becomes unsolvable when trying to use both as inputs.  
+I tried to stick as close to the code in the paper as possible and assumed that similar modifications to the program use the same function call for solving. But now that I think about it, that wouldn't make sense as some bools or ints would need to be different. Oh well.
 
 
 Other notes:
