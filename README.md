@@ -7,14 +7,14 @@ For my 4 hours I did the following:
 - "deriv_ret_example.sk" and its .cpp and .h tries to solve for a single thing: what to return if the input polynomial array has the length of 1?
 - figure_4.sk and its C++ files solve for the MPY program in figure 4. Currently, it only tests for the input [1,2,3,4,5]. The reason is because it is tested alongside with something like [4] as well, it becomes unsolvable.
 
-The reason it becomes unsolvable is because of the below snippet. (Don't )
+The reason it becomes unsolvable is because of the below snippet.
 
 ```
 Array computeDeriv(Array poly){//example where we don't know what is wrong  
     Array deriv = new Array(sz = 0, A = {});  
     int zero = 0;  
     if(boolOrFalse(poly.sz == 1)){  
-        **return modRetVal0(deriv);**  
+        return modRetVal0(deriv);
     }  
     int start_index = intOrPlusOne(0);  
     int arrSize = poly.sz - start_index;  
@@ -28,7 +28,7 @@ Array computeDeriv(Array poly){//example where we don't know what is wrong
         }  
     }  
     Array possibleArray = new Array(sz = arrSize, A = tempArr);  
-    **return modRetVal0(possibleArray);**  
+    return modRetVal0(possibleArray);  
 }  
   
 Array modRetVal0(Array a){  
